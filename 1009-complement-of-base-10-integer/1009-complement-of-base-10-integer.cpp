@@ -24,13 +24,13 @@ public:
         }
 
         int ans = 0;
-        int k = 1;
+        int k = n - 1;
 
-        for(int i = 0; i < n; i++){
+        for(int i = n - 1; i >= 0; i--){
             if(binary[i] == '1'){
-                ans += k;
+                ans += pow(2, k);
             }
-            k *= 2;
+            k--;
         }
 
         return ans;
