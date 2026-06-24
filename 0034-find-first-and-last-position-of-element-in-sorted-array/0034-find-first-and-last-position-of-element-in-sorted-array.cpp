@@ -6,20 +6,46 @@ public:
 
         if(n < 1)return {-1,-1};
 
-        for(int i = 0; i < n; i++){
-            if(nums[i] == target){
-                ans.push_back(i);
-                break;
+        int start = 0, end = n-1,firstpos = -1,secondpos = -1;
+        while(start <= end){
+            
+            int mid = start+(end-start)/2;
+
+            if(nums[mid] == target){
+                firstpos = mid;
+                end = mid-1;
+            }
+            else if(nums[mid] < target){
+                start = mid+1;
+            }
+            else{
+                end = mid-1;
             }
         }
-        for(int i = n-1; i >= 0; i--){
-            if(nums[i] == target){
-                ans.push_back(i);
-                break;
+
+        start = 0, end = n-1;
+        while(start <= end){
+            
+            int mid = start+(end-start)/2;
+
+            if(nums[mid] == target){
+                secondpos = mid;
+                start = mid+1;
+            }
+            else if(nums[mid] < target){
+                start = mid+1;
+            }
+            else{
+                end = mid-1;
             }
         }
-        
-        if(ans.size() > 1)return ans;
+
+        if(firstpos != -1 && secondpos != -1){
+            ans.push_back(firstpos);
+            ans.push_back(secondpos);
+        }
         else return {-1,-1};
+        
+        return ans;
     }
 };
