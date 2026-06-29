@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        
+        int mini = INT_MAX,n = nums.size();
+
+        for(int i = 0; i < n; i++){
+            mini = min(nums[i],mini);
+        }
+
+        return mini;
+    }
+};
